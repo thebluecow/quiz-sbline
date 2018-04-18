@@ -1,0 +1,21 @@
+nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
+  button.navbar-toggler.d-md-none.float-xs-right(type='button', data-toggle='collapse', data-target='#navbar') &#x2630;
+  #navbar.navbar-nav.collapse.navbar-toggleable-sm
+  a.navbar-brand(href='/')
+    i.icn-logo.material-icons bookmark_border
+    | QuizWeb
+  .container
+    ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+    if !currentUser
+      a.nav-item.nav-link(href='register') Sign Up
+    a.nav-item.nav-link(href='about') About
+    a.nav-item.nav-link(href='quiz') Quiz
+    if (name)
+      a.nav-item.nav-link(href='report') All Scores
+    
+  if currentUser
+    div
+      img.avatar.img-circle.d-xs-none(src='/images/stormtrooper.png', alt='avatar')
+      a.btn.btn-light.float-md-right(href='/logout') Log out
+  else  
+    a.btn.btn-info.float-md-right(href='login') Login

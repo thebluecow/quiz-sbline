@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-8.offset-md-2
+        h1.display-4.m-b-2 Quiz
+    .row
+      .col-md-8.offset-md-2    
+        #messages
+    .row
+      .col-md-8.offset-md-2 
+        #optional
+          #choose-file.input-group.mb-3
+            .custom-file
+              input#file.custom-file-input(type='file')
+              label.custom-file-label(for='file') Choose question file
+          .form-group
+            label(for='max') Set a questions max limit: 
+            input.form-control#max(name='max', type='number')
+          .form-group
+            label(for='time') Set a time limit (seconds): 
+            input.form-control#time(name='time', type='number')
+        #q
+          #question
+          #answers.form-group
+          a.btn.btn-info#answer-question(type='button') Answer
+          br
+        #play
+          .form-group
+            a.btn.btn-info#quiz-button(type='button') Play Quiz
+            a.btn.btn-info#reset-button(type='button') Reset

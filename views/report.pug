@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .main.container.clearfix
+    .row
+      .col-md-8.offset-md-2
+        h1.display-4
+          if (games.length!=0)
+            img.avatar.img-circle.d-xs-none(src='/images/stormtrooper.png', alt='avatar')
+            | #{games[0].user.name}
+          else
+            h3 You haven't taken any tests. :(
+    if (games.length!=0)
+      .row
+        .col-md-8.offset-md-2
+          table.table
+            thead.thead-light
+              tr
+                th(scope='col') Game Date
+                th(scope='col') Total Questions
+                th(scope='col') Answered
+                th(scope='col') Correct
+                th(scope='col') Incorrect
+                th(scope='col') Score
+            tbody
+              each game in games
+                tr
+                  td #{moment(game.gameDate).format("YYYY-MM-DD HH:mm")}
+                  td #{game.totalQuestions}
+                  td #{game.answered}
+                  td #{game.correct}
+                  td #{game.incorrect}
+                  td #{sprintf(format, game.correct / game.totalQuestions * 100)}%
+          
