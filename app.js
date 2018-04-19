@@ -22,8 +22,14 @@ app.use(function (req, res, next) {
 app.locals.sprintf = require("sprintf-js").sprintf;
 app.locals.format = "%.2f";
 
-// mongodb connection
-mongoose.connect("mongodb://localhost:27017/quiz");
+// set mongodb database name
+//const DB_NAME = 'quiz';
+// for mongolab
+const DB_NAME = 'heroku_kb1c62g0';
+
+//mongoose.connect('mongodb://localhost:27017/' + DB_NAME);
+mongoose.connect('mongodb://heroku_kb1c62g0:dksesevuud5h0dkul1dm1jap4o@ds147589.mlab.com:47589/' + DB_NAME);
+
 var db = mongoose.connection;
 // mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
