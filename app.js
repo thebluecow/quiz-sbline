@@ -6,6 +6,8 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var app = express();
 
+var port = process.env.PORT || 3000;
+
 // use sessions for tracking logins
 app.use(session({
   secret: 'software portability is hard',
@@ -31,6 +33,17 @@ const DB_NAME = 'heroku_kb1c62g0';
 mongoose.connect('mongodb://heroku_kb1c62g0:dksesevuud5h0dkul1dm1jap4o@ds147589.mlab.com:47589/' + DB_NAME);
 
 var db = mongoose.connection;
+
+db.once('open', function() {
+    console.log('db connection successful');
+
+    // adding drop database here to ensure unique index on email
+    // is properly created
+    /*db.dropDatabase(function(err, result) {
+        console.log('db dropped');
+    });*/
+
+});
 // mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -68,6 +81,6 @@ app.use(function(err, req, res, next) {
 });
 
 // listen on port 3000
-app.listen(3000, function () {
-  console.log('Express app listening on port 3000');
+app.listen(port, function () {
+  console.log('Express app listening on port ' + port);
 });
